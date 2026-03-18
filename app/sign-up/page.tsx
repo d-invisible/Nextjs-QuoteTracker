@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signUp } from "@/lib/auth/auth-client";
 
 export default function SignUp() {
     const [name, setName] = useState("");
@@ -26,35 +27,32 @@ export default function SignUp() {
 
     const router = useRouter();
 
-    //   async function handleSubmit(e: React.FormEvent) {
-    //     e.preventDefault();
-
-    //     setError("");
-    //     setLoading(true);
-
-    //     try {
-    //       const result = await signUp.email({
-    //         name,
-    //         email,
-    //         password,
-    //       });
-
-    //       if (result.error) {
-    //         setError(result.error.message ?? "Failed to sign up");
-    //       } else {
-    //         router.push("/dashboard");
-    //       }
-    //     } catch (err) {
-    //       setError("An unexpected error occurred");
-    //     } finally {
-    //       setLoading(false);
-    //     }
-    //   }
-
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        console.log('submittion ', name, email, password)
+
+        setError("");
+        setLoading(true);
+
+        try {
+            const result = await signUp.email({
+                name,
+                email,
+                password,
+            });
+
+            if (result.error) {
+                setError(result.error.message ?? "Failed to sign up");
+            } else {
+                router.push("/dashboard");
+            }
+        } catch (err) {
+            setError("An unexpected error occurred");
+        } finally {
+            setLoading(false);
+        }
     }
+
+
 
     return (
         <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
