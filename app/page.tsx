@@ -1,14 +1,19 @@
+"use client"
+
+
+import ImageTabs from "@/components/image-tabs";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, Briefcase, CheckCircle2, TrendingUp } from "lucide-react";
 import Link from "next/link";
 
+
 export default function Home() {
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <main className="flex-1">
         {/* hero section */}
-        <section className="container mx-auto px-4 py-32">
+        <section className="container mx-auto px-4 py-32 bg-gray-100">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-black mb-6 text-6xl font-bold">Better way to track <span className="text-blue-500">Quotes</span></h1>
             <p className="text-muted-foreground mb-10 text-xl">Manage your quotes and invoices in one place.</p>
@@ -19,6 +24,54 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* hero images section */}
+        <ImageTabs />
+
+        {/* Features Section */}
+        <section className="border-t bg-white py-24">
+          <div className="container mx-auto px-">
+            <div className="grid gap-12 md:grid-cols-3 mx-24">
+              <div className="flex flex-col">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10">
+                  <Briefcase className="h-6 w-6 text-blue-500" />
+                </div>
+                <h3 className="mb-3 text-2xl font-semibold text-black">
+                  Organize Quotes
+                </h3>
+                <p className="text-muted-foreground">
+                  Create custom boards and columns to track your quotes
+                  applications at every stage of the process.
+                </p>
+              </div>
+              <div className="flex flex-col">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10">
+                  <TrendingUp className="h-6 w-6 text-blue-500" />
+                </div>
+                <h3 className="mb-3 text-2xl font-semibold text-black">
+                  Track Progress
+                </h3>
+                <p className="text-muted-foreground">
+                  Monitor your quotes status from applied to invoice to
+                  paid with visual Kanban boards.
+                </p>
+              </div>
+              <div className="flex flex-col">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10">
+                  <CheckCircle2 className="h-6 w-6 text-blue-500" />
+                </div>
+                <h3 className="mb-3 text-2xl font-semibold text-black">
+                  Stay Organized
+                </h3>
+                <p className="text-muted-foreground">
+                  Never lose track of an quote. Keep all your quotes
+                  information in one centralized place.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
     </div>
   );
