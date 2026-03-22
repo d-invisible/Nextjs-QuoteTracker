@@ -38,6 +38,8 @@ export default function SignIn() {
                 password,
             });
 
+            console.log('result signin', result);
+
             if (result.error) {
                 setError(result.error.message ?? "Failed to sign in");
             } else {

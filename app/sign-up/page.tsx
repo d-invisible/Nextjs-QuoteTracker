@@ -40,6 +40,8 @@ export default function SignUp() {
                 password,
             });
 
+
+
             if (result.error) {
                 setError(result.error.message ?? "Failed to sign up");
             } else {

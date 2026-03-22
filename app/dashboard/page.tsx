@@ -1,9 +1,28 @@
+import { getSession } from "@/lib/auth/auth";
+import connectDB from "@/lib/db";
+import { redirect } from "next/navigation";
+import { Board } from "@/lib/models/index";
+import KanbanBoard from "@/components/KanbanBoard";
 
 
-export default function Dashboard() {
+export default async function Dashboard() {
+    const session = await getSession();
+    if (!session?.user) {
+        redirect('/sign-in');
+    }
+    await connectDB();
+
+    const board = await Board.findOne({ userId: session.user.id }).populate({ path: 'columns' });
+
     return (
-        <div>
-            <h1>Dashboard</h1>
+        <div className="min-h-screen bg-white">
+            <div className="container mx-auto p-6">
+                <div className="mb-6">
+                    <h1 className="text-2xl font-bold text-gray-900">{board?.name}</h1>
+                    <p className="text-gray-600">Track your Quotes and Clients</p>
+                </div>
+                <KanbanBoard board={JSON.parse(JSON.stringify(board))} userId={session.user.id} />
+            </div>
         </div>
     )
 }
